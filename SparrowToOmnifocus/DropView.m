@@ -21,6 +21,9 @@
 - (void)createOmnifocusTaskWithName:(NSString*)name andNote:(NSString*)note {
     name = (name ? [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] : @"");
     note = (note ? [note stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] : @"");
+    
+    if (!name.length && !note.length)
+        return;
 
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"omnifocus:///add?name=%@&note=%@", name, note]]];
 }
